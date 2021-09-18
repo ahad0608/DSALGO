@@ -38,6 +38,49 @@ class Solution{
         }
         return ans;
     }
+    int firstOccu(int arr[],int n,int x){ // Find the first occurence of element in a sorted array.
+        int ans = -1; // If we are not able to find that element.
+        int low=0;
+        int high = n-1;
+        while(low<=high){
+            int mid =(low+high)/2;
+            if(arr[mid]==x){
+                ans=mid;
+                high=mid-1;
+                continue;
+            }
+            else if(arr[mid]>x){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+
+        }
+        return ans;
+
+    }
+    int lastOccurence(int arr[],int n, int x){
+        int ans = -1; // If we are not able to find that element.
+        int low=0;
+        int high = n-1;
+        while(low<=high){
+            int mid =(low+high)/2;
+            if(arr[mid]==x){
+                ans=mid;
+                low=mid+1;
+                continue;
+            }
+            else if(arr[mid]>x){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+
+        }
+        return ans;
+    }
 
 };
 
@@ -47,6 +90,8 @@ int main(){
     Solution obj;
     cout<<obj.lowerbound(arr,n,10)<<endl; // Result should be 5.
     cout<<obj.upperbound(arr,n,10)<<endl; // Result should be 8.
+    cout<<obj.firstOccu(arr,n,10)<<endl; //Result should be 5;
+    cout<<obj.lastOccurence(arr,n,10)<<endl; //Result should be 7;
 
     return 0;
 }
