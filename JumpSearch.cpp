@@ -23,6 +23,26 @@ class Search{
             }
             return -1;
         }
+        // Same as Binary Search but with the optimized position to toggle rather than middle element.
+        int InterpolationSearch(int arr[],int low,int high,int x){
+            int pos;
+            if(low <= high && x>=arr[low] && x<=arr[high]){
+                pos = low + (((double)(high - low) / (arr[high] - arr[low])) * (x - arr[low]));
+
+                if(arr[pos]==x){
+                    return pos;
+                }
+                else if(arr[pos]>x){
+                    return InterpolationSearch(arr,low,pos-1,x);
+                }
+                else{
+                    return InterpolationSearch(arr,pos+1,high,x);
+                }
+
+            }
+            return -1; //When element is not found.
+        }
+        // We can also start with while loop same as binary search.
 
 };
 
@@ -37,6 +57,7 @@ int main(){
     cin>>x;
     Search obj;
     cout<<obj.JumpSearch(arr,n,x)<<endl;
+    cout<<obj.InterpolationSearch(arr,0,n,x)<<endl;
 
     return 0;
 }
